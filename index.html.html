@@ -1,0 +1,2664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forma & Matéria — Arquitetura e Interiores</title>
+  <meta name="description" content="Landing page conceitual para estúdio de arquitetura e interiores de alto padrão. Projeto de portfólio com foco em estratégia, posicionamento e front-end.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body, h1, h2, h3, h4, p, ul, li {
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --ivory: #F4EFE6;
+      --ivory-deep: #EAE3D6;
+      --ivory-dark: #D9D0C0;
+      --charcoal: #1C1B19;
+      --charcoal-m: #2E2D2A;
+      --charcoal-l: #48453F;
+      --gold: #B8935A;
+      --gold-lt: #C9A96E;
+      --stone: #6B6560;
+      --stone-lt: #8A8278;
+
+      --font-display: 'Libre Baskerville', Georgia, serif;
+      --font-body: 'Jost', sans-serif;
+
+      --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      --nav-offset: 96px;
+    }
+
+    body {
+      background: var(--ivory);
+      color: var(--charcoal);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    section {
+      scroll-margin-top: var(--nav-offset);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      color: var(--charcoal);
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 4.8rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 4vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: clamp(1rem, 2vw, 1.6rem);
+      font-weight: 700;
+    }
+
+    p {
+      color: var(--charcoal-l);
+      line-height: 1.85;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 40px);
+    }
+
+    .container-narrow {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 40px);
+    }
+
+    .label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+
+    .rule {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      margin: 20px 0 24px;
+    }
+
+    .rule-center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* BOTÕES COM MAIOR PRESENÇA E LEITURA */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid var(--charcoal);
+      padding: 14px 28px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: var(--transition);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      background: var(--charcoal);
+      color: var(--ivory);
+    }
+
+    .btn-gold {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .btn-gold:hover,
+    .btn-gold:focus-visible {
+      background: var(--gold);
+      color: var(--ivory);
+    }
+
+    /* BOTÃO DO HERO ESQUERDO (PARTE ESCURA) REVOLUCIONADO PARA POPPAR COM EXCELÊNCIA */
+    .btn-light {
+      border-color: var(--gold);
+      color: var(--gold-lt);
+      font-weight: 600;
+    }
+
+    .btn-light:hover,
+    .btn-light:focus-visible {
+      background: var(--gold);
+      color: var(--charcoal);
+      border-color: var(--gold);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      background: var(--charcoal);
+      color: var(--ivory);
+      padding: 12px 16px;
+      z-index: 999;
+      transition: top 0.25s ease;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    /* BARRA DE NAVEGAÇÃO REVISADA */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 28px 0;
+      border-bottom: 1px solid transparent;
+      transition: var(--transition);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--ivory);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+
+    .nav-logo em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+    }
+
+    /* Padrão Mobile/Tablet (sobre o fundo escuro do hero) */
+    .nav-links a {
+      font-size: 0.84rem;
+      font-weight: 600; /* Força peso semi-bold (600) para nitidez absoluta em qualquer tela */
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ivory);
+      transition: var(--transition);
+    }
+
+    .nav-contact {
+      background: var(--gold);
+      color: var(--ivory);
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.84rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--gold);
+    }
+
+    .nav-contact:hover,
+    .nav-contact:focus-visible {
+      background: var(--gold-lt);
+      color: var(--ivory);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: var(--ivory);
+      font-size: 1.5rem;
+      z-index: 101;
+    }
+
+    .menu-toggle:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    /* SOLUÇÃO DE CONTRASTE SELETIVO (DESKTOP PRE-SCROLL) */
+    @media (min-width: 1025px) {
+      /* Os itens 1 e 2 (Filosofia e Serviços) ficam sobre o fundo escuro (esquerdo) -> Precisam ser Claros */
+      nav:not(.scrolled) .nav-links li:nth-child(1) a,
+      nav:not(.scrolled) .nav-links li:nth-child(2) a {
+        color: var(--ivory); /* Contraste máximo em off-white creme */
+      }
+      nav:not(.scrolled) .nav-links li:nth-child(1) a:hover,
+      nav:not(.scrolled) .nav-links li:nth-child(2) a:hover {
+        color: var(--gold-lt);
+      }
+
+      /* Os itens 3 e 4 (Projetos e Processo) ficam sobre o fundo claro (direito) -> Precisam ser Escuros */
+      nav:not(.scrolled) .nav-links li:nth-child(3) a,
+      nav:not(.scrolled) .nav-links li:nth-child(4) a {
+        color: var(--charcoal); /* Contraste máximo em carvão profundo */
+      }
+      nav:not(.scrolled) .nav-links li:nth-child(3) a:hover,
+      nav:not(.scrolled) .nav-links li:nth-child(4) a:hover {
+        color: var(--gold);
+      }
+
+      nav:not(.scrolled) .nav-contact {
+        background: var(--charcoal);
+        color: var(--ivory);
+      }
+      nav:not(.scrolled) .nav-contact:hover {
+        background: var(--gold);
+      }
+    }
+
+    /* ESTILO DA NAVEGAÇÃO SCROLLED (UNIFORME MARFIM) */
+    nav.scrolled {
+      background: rgba(244, 239, 230, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--ivory-dark);
+      padding: 16px 0;
+      box-shadow: 0 4px 20px rgba(28,27,25,0.06);
+    }
+
+    nav.scrolled .nav-logo {
+      color: var(--charcoal);
+    }
+
+    nav.scrolled .nav-links a {
+      color: var(--charcoal-l);
+    }
+
+    nav.scrolled .nav-contact {
+      background: var(--gold);
+      color: var(--ivory);
+    }
+
+    nav.scrolled .nav-links a:hover,
+    nav.scrolled .nav-links a:focus-visible {
+      color: var(--gold);
+    }
+
+    nav.scrolled .nav-contact:hover {
+      background: var(--gold-lt);
+    }
+
+    nav.scrolled .menu-toggle {
+      color: var(--charcoal);
+    }
+
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-left {
+      background: var(--charcoal);
+      color: var(--ivory);
+      padding: 140px 64px 72px;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+    }
+
+    .hero-left::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(184,147,90,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,147,90,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 540px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      color: var(--ivory);
+      margin-bottom: 28px;
+    }
+
+    .hero-title .accent {
+      color: var(--gold-lt);
+    }
+
+    .hero-sub {
+      color: var(--stone-lt);
+      max-width: 430px;
+      margin-bottom: 36px;
+      font-size: 0.95rem;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .hero-note {
+      color: var(--stone-lt);
+      font-size: 0.74rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-right {
+      background: var(--ivory-deep);
+      padding: 140px 64px 72px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-panel {
+      max-width: 500px;
+    }
+
+    .hero-panel-mark {
+      font-family: var(--font-display);
+      font-size: 6rem;
+      color: var(--ivory-dark);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .hero-panel h2 {
+      font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+      margin-bottom: 20px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 36px;
+      flex-wrap: wrap;
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid var(--ivory-dark);
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-top: 4px;
+    }
+
+    .hero-disclaimer {
+      margin-top: 28px;
+      font-size: 0.78rem;
+      color: var(--stone);
+    }
+
+    #filosofia,
+    #processo,
+    #diferenciais,
+    #contato {
+      padding: 130px 0;
+    }
+
+    #servicos,
+    #depoimentos,
+    #portfolio-doc,
+    footer {
+      background: var(--charcoal);
+    }
+
+    #servicos,
+    #projetos,
+    #depoimentos {
+      padding: 130px 0;
+    }
+
+    #projetos {
+      background: var(--ivory-deep);
+    }
+
+    .section-intro {
+      margin-bottom: 72px;
+    }
+
+    .section-intro.center {
+      text-align: center;
+    }
+
+    .section-intro.center p {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .filosofia-grid,
+    .diferenciais-wrap,
+    .pdoc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .filosofia-visual {
+      min-height: 460px;
+      background: var(--charcoal-m);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .filosofia-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(184,147,90,0.14), transparent 55%),
+        linear-gradient(225deg, rgba(196,133,106,0.10), transparent 60%);
+    }
+
+    .filosofia-visual::after {
+      content: "I";
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-family: var(--font-display);
+      font-size: 5rem;
+      color: rgba(255,255,255,0.08);
+    }
+
+    .filosofia-caption {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      color: var(--stone-lt);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .filosofia-intro {
+      font-size: clamp(1.5rem, 2.7vw, 2.2rem);
+      margin-bottom: 28px;
+    }
+
+    .filosofia-copy p {
+      margin-bottom: 22px;
+    }
+
+    .pilares {
+      margin-top: 36px;
+      border-top: 1px solid var(--ivory-dark);
+    }
+
+    .pilar {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--ivory-dark);
+    }
+
+    .pilar-num {
+      color: var(--gold);
+      font-family: var(--font-display);
+      font-weight: 700;
+    }
+
+    .pilar h3 {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .servicos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-left: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .servico-card {
+      padding: 40px 32px;
+      border-right: 1px solid rgba(255,255,255,0.15);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .servico-icon {
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(184,147,90,0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .servico-card h3 {
+      color: var(--ivory);
+      margin-bottom: 12px;
+      font-size: 1.18rem;
+    }
+
+    .servico-card p {
+      color: var(--stone-lt);
+      font-size: 0.9rem;
+    }
+
+    .servico-tag {
+      display: inline-block;
+      margin-top: 18px;
+      color: var(--gold);
+      font-size: 0.66rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .projetos-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+
+    .projetos-note {
+      max-width: 520px;
+      font-size: 0.92rem;
+    }
+
+    .projetos-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      grid-template-rows: 360px 280px;
+      gap: 16px;
+    }
+
+    .projeto-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--charcoal-m);
+      min-height: 220px;
+    }
+
+    .projeto-card.large {
+      grid-row: 1 / 3;
+    }
+
+    .projeto-pattern-1,
+    .projeto-pattern-2,
+    .projeto-pattern-3 {
+      position: absolute;
+      inset: 0;
+    }
+
+    .projeto-pattern-1 {
+      background: linear-gradient(135deg, #2E2D2A 0%, #1C1B19 100%);
+    }
+
+    .projeto-pattern-1::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border: 1px solid rgba(184,147,90,0.22);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow:
+        0 0 0 42px rgba(184,147,90,0.04),
+        0 0 0 82px rgba(184,147,90,0.02);
+    }
+
+    .projeto-pattern-2 {
+      background: linear-gradient(160deg, #3D3730 0%, #2A2520 100%);
+    }
+
+    .projeto-pattern-2::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(196,133,106,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(196,133,106,0.08) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    .projeto-pattern-3 {
+      background: linear-gradient(200deg, #251E1A 0%, #1A1815 100%);
+    }
+
+    .projeto-pattern-3::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120px;
+      height: 120px;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(184,147,90,0.15);
+      box-shadow:
+        inset 0 0 0 20px rgba(184,147,90,0.04),
+        0 0 0 30px rgba(184,147,90,0.03),
+        0 0 0 60px rgba(184,147,90,0.02);
+    }
+
+    .projeto-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28,27,25,0.92) 0%, rgba(28,27,25,0.2) 55%, transparent 100%);
+    }
+
+    .projeto-content {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 28px;
+      z-index: 1;
+    }
+
+    .projeto-tag {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 0.66rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .projeto-name {
+      color: var(--ivory);
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    .projeto-area,
+    .projeto-caption {
+      color: var(--stone-lt);
+    }
+
+    .projeto-area {
+      font-size: 0.8rem;
+      margin-top: 4px;
+    }
+
+    .projeto-caption {
+      font-size: 0.78rem;
+      margin-top: 10px;
+      max-width: 340px;
+    }
+
+    .processo-steps {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .processo-step {
+      display: grid;
+      grid-template-columns: 72px 1fr 1fr;
+      gap: 32px;
+      padding: 36px 0;
+      border-top: 1px solid var(--ivory-dark);
+    }
+
+    .processo-step:last-child {
+      border-bottom: 1px solid var(--ivory-dark);
+    }
+
+    .step-num {
+      width: 54px;
+      height: 54px;
+      border: 1px solid var(--ivory-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      color: var(--stone);
+      font-weight: 700;
+    }
+
+    .processo-step h3 {
+      margin-bottom: 8px;
+    }
+
+    .processo-detail-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.84rem;
+      color: var(--stone);
+      margin-bottom: 8px;
+    }
+
+    .processo-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-top: 10px;
+      flex-shrink: 0;
+    }
+
+    .diferencial-list {
+      margin-top: 32px;
+      border-top: 1px solid var(--ivory-dark);
+    }
+
+    .diferencial-item {
+      display: flex;
+      gap: 18px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--ivory-dark);
+    }
+
+    .dif-mark {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--charcoal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--charcoal);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .dif-content h3 {
+      font-family: var(--font-body);
+      font-size: 0.94rem;
+      margin-bottom: 4px;
+    }
+
+    .diferenciais-visual {
+      position: relative;
+      min-height: 480px;
+    }
+
+    .dif-card-back {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 74%;
+      height: 78%;
+      background: var(--charcoal-m);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dif-card-back-inner {
+      width: 60%;
+      height: 60%;
+      border: 1px solid rgba(184,147,90,0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dif-card-back-center {
+      width: 40%;
+      height: 40%;
+      background: rgba(184,147,90,0.08);
+      border: 1px solid rgba(184,147,90,0.18);
+    }
+
+    .dif-card-front {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 56%;
+      background: var(--ivory-dark);
+      padding: 28px;
+      z-index: 2;
+    }
+
+    .dif-card-front-num {
+      font-family: var(--font-display);
+      font-size: 3.4rem;
+      color: var(--charcoal);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .dif-card-front-num em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .dif-card-front-text {
+      font-size: 0.82rem;
+      color: var(--charcoal-l);
+    }
+
+    .dif-card-front-note {
+      margin-top: 12px;
+      font-size: 0.74rem;
+      color: var(--stone);
+    }
+
+    .dep-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .dep-header h2 {
+      color: var(--ivory);
+    }
+
+    .dep-sub {
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--stone-lt);
+    }
+
+    .dep-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .dep-card {
+      background: var(--charcoal);
+      padding: 40px 32px;
+    }
+
+    .dep-quote {
+      display: block;
+      color: var(--gold);
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      line-height: 0.5;
+      margin-bottom: 18px;
+    }
+
+    .dep-text {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--ivory-deep);
+      margin-bottom: 26px;
+    }
+
+    .dep-author {
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 18px;
+    }
+
+    .dep-name {
+      color: var(--ivory);
+      font-size: 0.84rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    .dep-role {
+      color: var(--stone);
+      font-size: 0.75rem;
+      margin-top: 4px;
+    }
+
+    .dep-note {
+      text-align: center;
+      color: var(--stone);
+      font-size: 0.76rem;
+      margin-top: 22px;
+    }
+
+    .contato-inner {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .contato-inner h2 {
+      margin-bottom: 24px;
+    }
+
+    .contato-inner h2 em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .contato-sub {
+      font-size: 1rem;
+      margin-bottom: 48px;
+    }
+
+    .contato-actions {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .contato-note {
+      margin-top: 32px;
+      font-size: 0.78rem;
+      color: var(--stone);
+    }
+
+    .contato-meta {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: var(--stone);
+    }
+
+    #portfolio-doc {
+      padding: 120px 0;
+      position: relative;
+    }
+
+    #portfolio-doc::before,
+    #portfolio-doc::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+    }
+
+    #portfolio-doc::before {
+      top: 0;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    #portfolio-doc::after {
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(184,147,90,0.3), transparent);
+    }
+
+    .pdoc-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 52px;
+    }
+
+    .pdoc-badge {
+      color: var(--gold);
+      border: 1px solid rgba(184,147,90,0.5);
+      padding: 6px 14px;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .pdoc-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(184,147,90,0.3);
+    }
+
+    .pdoc-left h2 {
+      color: var(--ivory);
+      margin-bottom: 20px;
+    }
+
+    .pdoc-left p {
+      color: var(--stone-lt);
+      margin-bottom: 22px;
+    }
+
+    .pdoc-author {
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .pdoc-author-label {
+      display: block;
+      font-size: 0.64rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 10px;
+    }
+
+    .pdoc-author-name {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--ivory);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .pdoc-author-role {
+      font-size: 0.82rem;
+      color: var(--stone-lt);
+    }
+
+    .pdoc-author-note {
+      margin-top: 12px;
+      font-size: 0.76rem;
+      color: var(--stone);
+      max-width: 380px;
+    }
+
+    .pdoc-section {
+      margin-bottom: 34px;
+    }
+
+    .pdoc-section-title {
+      display: block;
+      color: var(--gold);
+      font-size: 0.64rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(184,147,90,0.3);
+    }
+
+    .pdoc-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.84rem;
+    }
+
+    .pdoc-item:last-child {
+      border-bottom: none;
+    }
+
+    .pdoc-item-key {
+      color: var(--stone);
+    }
+
+    .pdoc-item-val {
+      color: var(--ivory-deep);
+    }
+
+    .pdoc-palette {
+      display: flex;
+      margin-top: 20px;
+      border: 1px solid rgba(255,255,255,0.15);
+      overflow: hidden;
+    }
+
+    .pdoc-swatch {
+      flex: 1;
+      height: 40px;
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .pdoc-swatch::after {
+      content: attr(data-name);
+      position: absolute;
+      left: 50%;
+      bottom: -28px;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      color: var(--stone);
+      white-space: nowrap;
+      letter-spacing: 0.08em;
+    }
+
+    .pdoc-decisions {
+      margin-top: 24px;
+    }
+
+    .pdoc-decision {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 14px;
+      padding: 16px 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .pdoc-decision:last-child {
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .pdoc-decision-mark {
+      color: var(--gold);
+    }
+
+    .pdoc-decision-text {
+      color: var(--stone-lt);
+      font-size: 0.84rem;
+      line-height: 1.65;
+    }
+
+    .pdoc-decision-text strong {
+      color: var(--ivory-deep);
+      font-weight: 500;
+    }
+
+    .pdoc-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .pdoc-tag {
+      border: 1px solid rgba(255,255,255,0.20);
+      color: var(--stone-lt);
+      padding: 5px 12px;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+    }
+
+    footer {
+      padding: 42px 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+
+    /* RECONSTRUÇÃO COMPLETA DO CHATBOT */
+    .chatbot-trigger {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--ivory);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 90;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 6px 20px rgba(184,147,90,0.25);
+      backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .chatbot-trigger:hover {
+      transform: scale(1.05) translateY(-2px);
+      background: var(--gold-lt);
+      box-shadow: 0 8px 24px rgba(184,147,90,0.35);
+    }
+
+    .chatbot-trigger:focus-visible {
+      outline: 2px solid var(--charcoal);
+      outline-offset: 2px;
+    }
+
+    .chatbot-modal {
+      position: fixed;
+      bottom: 104px;
+      right: 32px;
+      width: 380px;
+      max-height: 600px;
+      background: var(--ivory);
+      border: 1px solid var(--ivory-dark);
+      border-radius: 8px;
+      box-shadow: 0 16px 40px rgba(28,27,25,0.12);
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+      pointer-events: none;
+      z-index: 91;
+      overflow: hidden;
+      backface-visibility: hidden;
+      perspective: 1000px;
+      will-change: transform, opacity;
+    }
+
+    .chatbot-modal.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
+    }
+
+    .chatbot-header {
+      padding: 24px;
+      background: var(--charcoal);
+      color: var(--ivory);
+      position: relative;
+    }
+
+    .chatbot-header h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      color: var(--ivory);
+      font-family: var(--font-display);
+      margin-bottom: 6px;
+    }
+
+    .chatbot-header p {
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--stone-lt);
+      letter-spacing: 0.02em;
+    }
+
+    .chatbot-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--stone-lt);
+      cursor: pointer;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .chatbot-close:hover {
+      color: var(--ivory);
+    }
+
+    .chatbot-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    .chatbot-categories {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chatbot-category-btn {
+      padding: 16px;
+      border: 1px solid var(--ivory-dark);
+      background: var(--ivory-deep);
+      color: var(--charcoal);
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      transition: all 0.2s ease;
+      text-align: left;
+      font-family: var(--font-body);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .chatbot-category-btn strong {
+      font-weight: 500;
+      color: var(--charcoal);
+      letter-spacing: 0.02em;
+    }
+
+    .chatbot-category-btn:hover {
+      background: var(--ivory);
+      border-color: var(--gold);
+    }
+
+    .chatbot-category-btn:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    .chatbot-category-num {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .chatbot-form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chatbot-form-back {
+      margin-bottom: 16px;
+    }
+
+    .chatbot-form-back button {
+      background: none;
+      border: none;
+      color: var(--stone);
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0;
+      text-align: left;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chatbot-form-back button:hover {
+      color: var(--gold);
+    }
+
+    .chatbot-message-group {
+      margin-bottom: 18px;
+    }
+
+    .chatbot-message-group label {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--stone);
+      margin-bottom: 6px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .chatbot-message-group input,
+    .chatbot-message-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--ivory-dark);
+      background: var(--ivory-deep);
+      border-radius: 4px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--charcoal);
+      resize: none;
+      transition: all 0.2s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .chatbot-message-group input:focus,
+    .chatbot-message-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      background: var(--ivory);
+    }
+
+    .chatbot-message-group textarea {
+      min-height: 90px;
+      max-height: 140px;
+    }
+
+    .chatbot-footer {
+      padding: 16px 24px 24px;
+      border-top: 1px solid var(--ivory-dark);
+      display: flex;
+      gap: 12px;
+      background: var(--ivory-deep);
+    }
+
+    .chatbot-send {
+      flex: 1.2;
+      padding: 12px 20px;
+      background: var(--gold);
+      color: var(--ivory);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+      font-family: var(--font-body);
+    }
+
+    .chatbot-send:hover {
+      background: var(--gold-lt);
+    }
+
+    .chatbot-send:disabled {
+      background: var(--stone-lt);
+      cursor: not-allowed;
+    }
+
+    .chatbot-send:focus-visible {
+      outline: 2px solid var(--charcoal);
+      outline-offset: 2px;
+    }
+
+    .chatbot-whatsapp {
+      flex: 1;
+      padding: 12px 20px;
+      background: transparent;
+      color: var(--charcoal);
+      border: 1px solid var(--charcoal);
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+      font-family: var(--font-body);
+      text-align: center;
+    }
+
+    .chatbot-whatsapp:hover {
+      background: var(--charcoal);
+      color: var(--ivory);
+    }
+
+    .chatbot-message {
+      font-size: 0.84rem;
+      color: var(--charcoal);
+      text-align: center;
+      padding: 14px;
+      background: rgba(184, 147, 90, 0.1);
+      border: 1px solid rgba(184, 147, 90, 0.2);
+      border-radius: 4px;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      color: var(--ivory);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .footer-logo em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .footer-links a {
+      color: var(--stone);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus-visible {
+      color: var(--gold);
+    }
+
+    .footer-copy {
+      color: var(--stone);
+      font-size: 0.72rem;
+    }
+
+    @media (max-width: 1024px) {
+      #hero,
+      .filosofia-grid,
+      .diferenciais-wrap,
+      .pdoc-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-left,
+      .hero-right {
+        padding: 100px 40px 60px;
+      }
+
+      .servicos-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .projetos-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 280px);
+      }
+
+      .projeto-card.large {
+        grid-row: auto;
+      }
+
+      .processo-step {
+        grid-template-columns: 56px 1fr;
+      }
+
+      .processo-step .processo-detail {
+        grid-column: 2;
+      }
+
+      .dep-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .pdoc-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      #filosofia,
+      #processo,
+      #diferenciais,
+      #contato {
+        padding: 100px 0;
+      }
+
+      #servicos,
+      #projetos,
+      #depoimentos {
+        padding: 100px 0;
+      }
+
+      #portfolio-doc {
+        padding: 100px 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        left: 0;
+        top: 64px;
+        width: 100%;
+        flex-direction: column;
+        background: rgba(244,239,230,0.98);
+        backdrop-filter: blur(14px);
+        padding: 32px 24px;
+        max-height: calc(100vh - 64px);
+        overflow-y: auto;
+        border-bottom: 1px solid var(--ivory-dark);
+        gap: 16px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 99;
+      }
+
+      .nav-links.active {
+        transform: translateX(0);
+      }
+
+      .nav-links a {
+        color: var(--charcoal-l) !important;
+      }
+
+      .nav-links a:hover {
+        color: var(--gold) !important;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .servicos-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projetos-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .processo-step {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .step-num {
+        display: none;
+      }
+
+      .dep-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contato-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .contato-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-left,
+      .hero-right {
+        padding: 80px 24px 40px;
+      }
+
+      .hero-panel-mark {
+        font-size: 4rem;
+      }
+
+      .dif-card-front {
+        width: 100%;
+        position: static;
+        background: var(--ivory-dark);
+      }
+
+      .diferenciais-visual {
+        min-height: auto;
+      }
+
+      .dif-card-back {
+        display: none;
+      }
+
+      h1 {
+        font-size: clamp(1.8rem, 5vw, 3rem);
+      }
+
+      h2 {
+        font-size: clamp(1.3rem, 4vw, 2.2rem);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-logo {
+        font-size: 1.15rem;
+      }
+
+      .nav-contact {
+        display: none;
+      }
+
+      .hero-left,
+      .hero-right {
+        padding: 60px 16px 32px;
+      }
+
+      #hero {
+        min-height: auto;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .hero-stat-num {
+        font-size: 1.6rem;
+      }
+
+      .servicos-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .servico-card {
+        padding: 24px 16px;
+      }
+
+      .projetos-grid {
+        grid-template-rows: repeat(3, 200px);
+      }
+
+      #filosofia,
+      #processo,
+      #diferenciais,
+      #contato {
+        padding: 60px 0;
+      }
+
+      #servicos,
+      #projetos,
+      #depoimentos {
+        padding: 60px 0;
+      }
+
+      .filosofia-visual {
+        min-height: 300px;
+      }
+
+      .pdoc-swatch::after {
+        font-size: 0.55rem;
+        bottom: -24px;
+      }
+
+      .chatbot-trigger {
+        bottom: 24px;
+        right: 24px;
+        width: 56px;
+        height: 56px;
+      }
+
+      .chatbot-modal {
+        bottom: 90px;
+        right: 24px;
+        width: calc(100vw - 48px);
+        max-width: 380px;
+        max-height: calc(100vh - 140px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
+  <nav id="navbar" aria-label="Navegação principal">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-logo">Forma <em>&</em> Matéria</a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#filosofia">Filosofia</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#processo">Processo</a></li>
+      </ul>
+
+      <a href="#contato" class="nav-contact">Iniciar conversa</a>
+    </div>
+  </nav>
+
+  <main id="conteudo-principal">
+    <section id="hero" aria-labelledby="hero-title">
+      <div class="hero-left">
+        <div class="hero-content">
+          <span class="hero-eyebrow">Arquitetura · Interiores · Alto Padrão</span>
+          <h1 class="hero-title" id="hero-title">
+            Espaços que<br>
+            <span class="accent">revelam quem</span><br>
+            você é
+          </h1>
+          <p class="hero-sub">
+            Concebemos ambientes onde cada detalhe carrega intenção — do estudo inicial ao projeto executivo, da materialidade à experiência espacial.
+          </p>
+          <div class="hero-cta-row">
+            <a href="#filosofia" class="btn btn-light">Conheça a filosofia <span>→</span></a>
+            <span class="hero-note">abordagem discreta · processo estruturado</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-panel">
+          <div class="hero-panel-mark">12</div>
+          <span class="label">Estúdio de arquitetura</span>
+          <div class="rule"></div>
+          <h2>Doze anos transformando espaços em experiências coerentes com quem os habita</h2>
+          <p>
+            Cada projeto começa pela escuta das necessidades práticas, dos desejos ainda difusos e da essência de quem viverá ou trabalhará no espaço. É dessa compreensão que nasce uma arquitetura mais verdadeira.
+          </p>
+
+          <div class="hero-stats">
+            <div>
+              <div class="hero-stat-num">90+</div>
+              <div class="hero-stat-label">Projetos conduzidos</div>
+            </div>
+            <div>
+              <div class="hero-stat-num">12+</div>
+              <div class="hero-stat-label">Anos de atuação</div>
+            </div>
+            <div>
+              <div class="hero-stat-num">6x</div>
+              <div class="hero-stat-label">Reconhecimentos setoriais</div>
+            </div>
+          </div>
+
+          <p class="hero-disclaimer">
+            Nesta demonstração, marca, números e casos apresentados compõem um estúdio fictício, criado para fins de estudo estratégico e visual.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="filosofia" aria-labelledby="filosofia-title">
+      <div class="container">
+        <div class="filosofia-grid">
+          <div class="filosofia-visual reveal">
+            <div class="filosofia-caption">Composição · Proporção · Matéria</div>
+          </div>
+
+          <div class="filosofia-copy">
+            <span class="label reveal">Nossa filosofia</span>
+            <div class="rule reveal d1"></div>
+            <h2 class="filosofia-intro reveal d1" id="filosofia-title">
+              A arquitetura que permanece não impõe um estilo — ela escuta, interpreta e traduz.
+            </h2>
+
+            <p class="reveal d2">
+              Cada encomenda é tratada como uma peça única. Em vez de recorrer a fórmulas prontas ou tendências passageiras, o projeto nasce da identidade do cliente, das qualidades do espaço e das possibilidades da matéria.
+            </p>
+
+            <p class="reveal d2">
+              Nossa abordagem combina sensibilidade estética, raciocínio técnico e organização de processo — porque projetos de alto padrão exigem excelência não apenas na imagem final, mas também no percurso até ela.
+            </p>
+
+            <div class="pilares">
+              <article class="pilar reveal d2">
+                <div class="pilar-num">01</div>
+                <div>
+                  <h3>Escuta antes do desenho</h3>
+                  <p>Dedicamos as primeiras etapas ao entendimento profundo da rotina, das expectativas e dos critérios de decisão do cliente.</p>
+                </div>
+              </article>
+
+              <article class="pilar reveal d3">
+                <div class="pilar-num">02</div>
+                <div>
+                  <h3>Verdade material</h3>
+                  <p>Cada material e acabamento é escolhido pela sua autenticidade, durabilidade e adequação contextual — sem camuflar o que o tempo naturalmente transforma.</p>
+                </div>
+              </article>
+
+              <article class="pilar reveal d4">
+                <div class="pilar-num">03</div>
+                <div>
+                  <h3>Coerência visual</h3>
+                  <p>O projeto não termina no projeto. A implementação é acompanhada para garantir que cada detalhe chegue à execução conforme concebido.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicos" aria-labelledby="servicos-title">
+      <div class="container">
+        <div class="section-intro center reveal">
+          <span class="label">Escopo de trabalho</span>
+          <div class="rule rule-center"></div>
+          <h2 id="servicos-title">Atuação integrada em arquitetura e design de espaços</h2>
+        </div>
+
+        <div class="servicos-grid">
+          <article class="servico-card reveal d1">
+            <div class="servico-icon">◆</div>
+            <h3>Projeto arquitetônico</h3>
+            <p>Do estudo preliminar ao projeto executivo. Reformulação de plantas, fachadas e detalhes construtivos que respeitam as possibilidades técnicas e orçamentárias.</p>
+            <span class="servico-tag">Reformas · renovações</span>
+          </article>
+
+          <article class="servico-card reveal d2">
+            <div class="servico-icon">◆</div>
+            <h3>Design de interiores</h3>
+            <p>Criação de ambiência: seleção de cores, materiais, móveis, iluminação e acessórios em harmonia com a arquitetura existente ou proposta.</p>
+            <span class="servico-tag">Espaços residenciais · comerciais</span>
+          </article>
+
+          <article class="servico-card reveal d3">
+            <div class="servico-icon">◆</div>
+            <h3>Consultoria e direção</h3>
+            <p>Acompanhamento técnico de projetos em andamento ou revisão de soluções já implementadas. Orientação estratégica para decisões de reforma ou ampliação.</p>
+            <span class="servico-tag">Supervisão · orientação técnica</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos" aria-labelledby="projetos-title">
+      <div class="container">
+        <div class="projetos-top">
+          <div>
+            <div class="section-intro reveal">
+              <span class="label">Portfólio</span>
+              <div class="rule reveal d1"></div>
+              <h2 id="projetos-title" class="reveal d1">Seleção de trabalhos realizados</h2>
+            </div>
+          </div>
+
+          <p class="projetos-note reveal">Cada projeto apresentado compõe um estudo de caso conceitual para fins de demonstração visual e estratégica. Clientes e detalhes técnicos específicos foram adaptados para preservar confidencialidade.</p>
+        </div>
+
+        <div class="projetos-grid">
+          <div class="projeto-card large reveal d2">
+            <div class="projeto-pattern-1"></div>
+            <div class="projeto-overlay"></div>
+            <div class="projeto-content">
+              <span class="projeto-tag">Residencial</span>
+              <div class="projeto-name">Casa na Serra</div>
+              <div class="projeto-area">Interiores e reforma estrutural</div>
+              <p class="projeto-caption">Reabilitação de residência de 1970 com foco em circulação, iluminação natural e paleta neutra.</p>
+            </div>
+          </div>
+
+          <div class="projeto-card reveal">
+            <div class="projeto-pattern-2"></div>
+            <div class="projeto-overlay"></div>
+            <div class="projeto-content">
+              <span class="projeto-tag">Comercial</span>
+              <div class="projeto-name">Espaço Colaborativo</div>
+              <div class="projeto-area">Design e implementação</div>
+            </div>
+          </div>
+
+          <div class="projeto-card reveal d1">
+            <div class="projeto-pattern-3"></div>
+            <div class="projeto-overlay"></div>
+            <div class="projeto-content">
+              <span class="projeto-tag">Residencial</span>
+              <div class="projeto-name">Apartamento Minimalista</div>
+              <div class="projeto-area">Interiores e acabamentos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="processo" aria-labelledby="processo-title">
+      <div class="container">
+        <div class="section-intro reveal">
+          <span class="label">Metodologia</span>
+          <div class="rule reveal d1"></div>
+          <h2 id="processo-title" class="reveal d1">Processo estruturado em etapas</h2>
+        </div>
+
+        <div class="processo-steps">
+          <div class="processo-step reveal d2">
+            <div class="step-num">01</div>
+            <h3>Briefing & diagnóstico</h3>
+            <div class="processo-detail">
+              <p>Reuniões exploratórias, análise do espaço existente, levantamento de restrições técnicas, orçamentárias e regulatórias.</p>
+            </div>
+          </div>
+
+          <div class="processo-step reveal d3">
+            <div class="step-num">02</div>
+            <h3>Conceito & proposta</h3>
+            <div class="processo-detail">
+              <p>Desenvolvimento de direção visual, estudos preliminares, moodboard e apresentação de conceito estratégico.</p>
+            </div>
+          </div>
+
+          <div class="processo-step reveal d4">
+            <div class="step-num">03</div>
+            <h3>Detalhamento & aprovação</h3>
+            <div class="processo-detail">
+              <p>Projeto executivo com plantas, cortes, elevações, especificação de materiais e revisões colaborativas com o cliente.</p>
+            </div>
+          </div>
+
+          <div class="processo-step reveal">
+            <div class="step-num">04</div>
+            <h3>Implementação & supervisão</h3>
+            <div class="processo-detail">
+              <p>Acompanhamento da obra, resolução de imprevistos, garantia de fidelidade ao projeto concebido.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="diferenciais" aria-labelledby="diferenciais-title">
+      <div class="container">
+        <div class="diferenciais-wrap">
+          <div class="diferenciais-visual reveal">
+            <div class="dif-card-back">
+              <div class="dif-card-back-inner">
+                <div class="dif-card-back-center"></div>
+              </div>
+            </div>
+            <div class="dif-card-front">
+              <div class="dif-card-front-num"><em>90</em>+</div>
+              <div class="dif-card-front-text">Projetos entregues com satisfação</div>
+              <div class="dif-card-front-note">Em 12 anos de atuação</div>
+            </div>
+          </div>
+
+          <div class="diferencial-list">
+            <span class="label reveal">Razões para escolher</span>
+            <div class="rule reveal d1"></div>
+            <h2 class="reveal d1" id="diferenciais-title">O que nos torna distintos no mercado</h2>
+
+            <article class="diferencial-item reveal d2">
+              <div class="dif-mark">✓</div>
+              <div class="dif-content">
+                <h3>Abordagem consultiva</h3>
+                <p>Não impomos estilo. Ouvimos, analisamos e propomos soluções que refletem identidade e necessidades reais.</p>
+              </div>
+            </article>
+
+            <article class="diferencial-item reveal d3">
+              <div class="dif-mark">✓</div>
+              <div class="dif-content">
+                <h3>Detalhe como diferencial</h3>
+                <p>Cada projeto é um estudo de proporção, materialidade e função. Os pequenos detalhes constroem a percepção de qualidade premium.</p>
+              </div>
+            </article>
+
+            <article class="diferencial-item reveal d4">
+              <div class="dif-mark">✓</div>
+              <div class="dif-content">
+                <h3>Processo documentado</h3>
+                <p>Transparência total: cronograma, briefing, propostas, feedback. Cada etapa é registrada e comunicada.</p>
+              </div>
+            </article>
+
+            <article class="diferencial-item reveal">
+              <div class="dif-mark">✓</div>
+              <div class="dif-content">
+                <h3>Acompanhamento pós-projeto</h3>
+                <p>A entrega não é o fim. Suporte e orientação continuam mesmo após a conclusão da obra.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="depoimentos" aria-labelledby="depoimentos-title">
+      <div class="container">
+        <div class="dep-header reveal">
+          <span class="label">Feedback</span>
+          <div class="rule rule-center"></div>
+          <h2 id="depoimentos-title">O que clientes dizem</h2>
+          <p class="dep-sub">Percepção de valor e satisfação se refletem no retorno qualitativo e na recomendação para pares.</p>
+        </div>
+
+        <div class="dep-grid">
+          <article class="dep-card reveal d1">
+            <span class="dep-quote">"</span>
+            <p class="dep-text">Não esperava que detalhes tão sutis pudessem fazer tanta diferença. O projeto respeitou meu espaço e minhas rotinas, não as invadiu.</p>
+            <div class="dep-author">
+              <div class="dep-name">Carolina Molina</div>
+              <div class="dep-role">Cliente · Residencial</div>
+            </div>
+          </article>
+
+          <article class="dep-card reveal d2">
+            <span class="dep-quote">"</span>
+            <p class="dep-text">A supervisão durante a obra foi crucial. Evitou erros e garantiu que tudo saísse conforme o projeto — uma garantia rara no mercado.</p>
+            <div class="dep-author">
+              <div class="dep-name">Rafael Torres</div>
+              <div class="dep-role">Cliente · Reforma estrutural</div>
+            </div>
+          </article>
+
+          <article class="dep-card reveal d3">
+            <span class="dep-quote">"</span>
+            <p class="dep-text">Trouxeram uma visão que não tínhamos. A abordagem foi consultiva, não impositiva. Sentiram-se como parceiros, não fornecedores.</p>
+            <div class="dep-author">
+              <div class="dep-name">Marina Steffens</div>
+              <div class="dep-role">Cliente · Interiores</div>
+            </div>
+          </article>
+        </div>
+
+        <p class="dep-note">Depoimentos fictícios, incluídos para demonstrar estratégia de narrativa e composição de confiança em uma landing page conceitual.</p>
+      </div>
+    </section>
+
+    <section id="contato" aria-labelledby="contato-title">
+      <div class="container-narrow">
+        <div class="contato-inner reveal">
+          <span class="label">Vamos conversar</span>
+          <div class="rule rule-center"></div>
+          <h2 id="contato-title">Todo grande projeto começa com uma conversa</h2>
+          <p class="contato-sub">
+            Escolha a forma que melhor funciona para você. Estamos aqui para ouvir, entender e transformar suas ideias em realidade.
+          </p>
+
+          <div class="contato-actions">
+            <a href="https://wa.me/5511999999999?text=Olá! Gostaria de conversar sobre um projeto de arquitetura e interiores." class="btn btn-gold" target="_blank">WhatsApp <span>→</span></a>
+            <button class="btn" id="chatbotOpenBtn">Enviar mensagem <span>→</span></button>
+          </div>
+
+          <p class="contato-note">Atualize o WhatsApp com seu número real.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio-doc" aria-labelledby="portfolio-doc-title">
+      <div class="container">
+        <div class="pdoc-eyebrow reveal">
+          <div class="pdoc-badge">Documentação de Portfólio</div>
+          <div class="pdoc-line"></div>
+        </div>
+
+        <div class="pdoc-grid">
+          <div class="pdoc-left reveal">
+            <h2 id="portfolio-doc-title">Este projeto como peça de demonstração</h2>
+            <p>
+              Esta landing page foi concebida como estudo de portfólio para demonstrar capacidade de leitura de briefing, direção visual, estrutura de informação, copy e front-end aplicado a um nicho de alto padrão.
+            </p>
+            <p>
+              A proposta buscou evitar soluções genéricas e construir uma experiência coerente com o universo de arquitetura e interiores premium: linguagem contida, ritmo visual elegante, CTA discreto e foco em percepção de valor.
+            </p>
+
+            <div class="pdoc-author">
+              <span class="pdoc-author-label">Desenvolvido por</span>
+              <div class="pdoc-author-name">Lívio Eduardo</div>
+              <div class="pdoc-author-role">Projeto de portfólio · Estratégia, direção visual e desenvolvimento front-end</div>
+              <div class="pdoc-author-note">
+                Marca, indicadores, projetos e depoimentos apresentados nesta página foram criados para fins de demonstração conceitual.
+              </div>
+            </div>
+          </div>
+
+          <div class="pdoc-right reveal d2">
+            <div class="pdoc-section">
+              <span class="pdoc-section-title">Ficha técnica do projeto</span>
+
+              <div class="pdoc-item">
+                <div class="pdoc-item-key">Nicho escolhido</div>
+                <div class="pdoc-item-val">Arquitetura e design de interiores de alto padrão</div>
+              </div>
+
+              <div class="pdoc-item">
+                <div class="pdoc-item-key">Objetivo da página</div>
+                <div class="pdoc-item-val">Posicionamento de autoridade e demonstração de raciocínio estratégico</div>
+              </div>
+
+              <div class="pdoc-item">
+                <div class="pdoc-item-key">Público-alvo</div>
+                <div class="pdoc-item-val">Clientes com perfil exigente, alta renda e valorização de exclusividade sem ostentação</div>
+              </div>
+
+              <div class="pdoc-item">
+                <div class="pdoc-item-key">Tipografia display</div>
+                <div class="pdoc-item-val">Libre Baskerville — clássica, estável e mais adequada à leitura com acentuação em português</div>
+              </div>
+
+              <div class="pdoc-item">
+                <div class="pdoc-item-key">Tipografia corpo</div>
+                <div class="pdoc-item-val">Jost — contemporânea, clara e neutra</div>
+              </div>
+
+              <div class="pdoc-item">
+                <div class="pdoc-item-key">Ferramentas</div>
+                <div class="pdoc-item-val">HTML, CSS e JavaScript puro, com fontes externas via Google Fonts</div>
+              </div>
+            </div>
+
+            <div class="pdoc-section">
+              <span class="pdoc-section-title">Paleta e psicologia aplicada</span>
+
+              <div class="pdoc-palette">
+                <div class="pdoc-swatch" data-name="Marfim" style="background:#F4EFE6;"></div>
+                <div class="pdoc-swatch" data-name="Carvão" style="background:#1C1B19;"></div>
+                <div class="pdoc-swatch" data-name="Dourado" style="background:#B8935A;"></div>
+                <div class="pdoc-swatch" data-name="Terracota" style="background:#C4856A;"></div>
+                <div class="pdoc-swatch" data-name="Pedra" style="background:#8A8278;"></div>
+              </div>
+
+              <div style="margin-top: 32px;">
+                <div class="pdoc-item">
+                  <div class="pdoc-item-key">Marfim quente</div>
+                  <div class="pdoc-item-val">Acolhimento e sofisticação sem frieza clínica</div>
+                </div>
+                <div class="pdoc-item">
+                  <div class="pdoc-item-key">Carvão profundo</div>
+                  <div class="pdoc-item-val">Autoridade, presença e sobriedade</div>
+                </div>
+                <div class="pdoc-item">
+                  <div class="pdoc-item-key">Dourado discreto</div>
+                  <div class="pdoc-item-val">Valor, seleção e refinamento sem excesso</div>
+                </div>
+                <div class="pdoc-item">
+                  <div class="pdoc-item-key">Terracota</div>
+                  <div class="pdoc-item-val">Materialidade, calor e vínculo com o mundo físico</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pdoc-section">
+              <span class="pdoc-section-title">Decisões estratégicas</span>
+
+              <div class="pdoc-decisions">
+                <div class="pdoc-decision">
+                  <div class="pdoc-decision-mark">—</div>
+                  <div class="pdoc-decision-text"><strong>CTA contido:</strong> o projeto evita pressão comercial excessiva para manter compatibilidade com o posicionamento premium.</div>
+                </div>
+
+                <div class="pdoc-decision">
+                  <div class="pdoc-decision-mark">—</div>
+                  <div class="pdoc-decision-text"><strong>Hero dividido em dois blocos:</strong> estrutura pensada para reforçar leitura editorial, contraste e percepção de sofisticação.</div>
+                </div>
+
+                <div class="pdoc-decision">
+                  <div class="pdoc-decision-mark">—</div>
+                  <div class="pdoc-decision-text"><strong>Provas tratadas como conceituais:</strong> números, depoimentos e projetos foram mantidos com transparência documental para preservar credibilidade do case.</div>
+                </div>
+
+                <div class="pdoc-decision">
+                  <div class="pdoc-decision-mark">—</div>
+                  <div class="pdoc-decision-text"><strong>Tipografia revisada:</strong> a fonte display foi ajustada para melhorar estabilidade visual da acentuação em português.</div>
+                </div>
+
+                <div class="pdoc-decision">
+                  <div class="pdoc-decision-mark">—</div>
+                  <div class="pdoc-decision-text"><strong>Responsividade completa:</strong> layout se adapta em todos os dispositivos, com menu móvel acessível e contraste de cores otimizado.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pdoc-section">
+              <span class="pdoc-section-title">Competências demonstradas</span>
+              <div class="pdoc-tags">
+                <div class="pdoc-tag">Briefing Estruturado</div>
+                <div class="pdoc-tag">UX Strategy</div>
+                <div class="pdoc-tag">Copywriting</div>
+                <div class="pdoc-tag">Design System</div>
+                <div class="pdoc-tag">Front-end</div>
+                <div class="pdoc-tag">Responsividade</div>
+                <div class="pdoc-tag">Acessibilidade</div>
+                <div class="pdoc-tag">JavaScript</div>
+                <div class="pdoc-tag">Posicionamento</div>
+                <div class="pdoc-tag">IA Aplicada</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CHATBOT TRIGGER BUTTON -->
+  <button class="chatbot-trigger" id="chatbotBtn" aria-label="Abrir chat" aria-expanded="false">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+  </button>
+
+  <!-- CHATBOT MODAL -->
+  <div class="chatbot-modal" id="chatbotModal">
+    <div class="chatbot-header">
+      <button class="chatbot-close" id="chatbotCloseBtn" aria-label="Fechar chat">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <h3>Inicie seu projeto</h3>
+      <p>Selecione a categoria para direcionarmos</p>
+    </div>
+
+    <div class="chatbot-content">
+      <div class="chatbot-categories" id="chatbotCategories">
+        <button class="chatbot-category-btn" data-category="reforma">
+          <span class="chatbot-category-num">I · REFORMA & REDESIGN</span>
+          <strong>Renovação de Espaços Existentes</strong>
+          <span style="font-size: 0.76rem; color: var(--stone);">Estudos estruturais, layout e fluxos físicos.</span>
+        </button>
+        <button class="chatbot-category-btn" data-category="interiores">
+          <span class="chatbot-category-num">II · DESIGN DE INTERIORES</span>
+          <strong>Projeto de Ambiência & Detalhamento</strong>
+          <span style="font-size: 0.76rem; color: var(--stone);">Especificação de materiais, móveis, iluminação e cores.</span>
+        </button>
+        <button class="chatbot-category-btn" data-category="consultoria">
+          <span class="chatbot-category-num">III · CONSULTORIA TÉCNICA</span>
+          <strong>Orientação & Direção Técnica</strong>
+          <span style="font-size: 0.76rem; color: var(--stone);">Revisões pontuais e acompanhamento de decisões.</span>
+        </button>
+        <button class="chatbot-category-btn" data-category="outro">
+          <span class="chatbot-category-num">IV · DEMAIS ASSUNTOS</span>
+          <strong>Consultas Personalizadas</strong>
+          <span style="font-size: 0.76rem; color: var(--stone);">Escreva suas demandas e dúvidas exclusivas.</span>
+        </button>
+      </div>
+
+      <div class="chatbot-form" id="chatbotForm" style="display: none;">
+        <div class="chatbot-form-back">
+          <button id="chatbotBackBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg> Back
+          </button>
+        </div>
+
+        <div class="chatbot-message-group">
+          <label for="chatbot-name">Seu nome *</label>
+          <input type="text" id="chatbot-name" placeholder="Como podemos lhe chamar?" required autocomplete="name">
+        </div>
+
+        <div class="chatbot-message-group">
+          <label for="chatbot-email">Seu e-mail *</label>
+          <input type="email" id="chatbot-email" placeholder="nome@provedor.com" required autocomplete="email">
+        </div>
+
+        <div class="chatbot-message-group">
+          <label for="chatbot-message">Sua mensagem *</label>
+          <textarea id="chatbot-message" placeholder="Conte-nos brevemente as ideias ou dúvidas..." required></textarea>
+        </div>
+
+        <div class="chatbot-message" id="chatbotStatus" style="display: none;"></div>
+      </div>
+    </div>
+
+    <div class="chatbot-footer">
+      <button class="chatbot-send" id="chatbotSendBtn" style="display: none;">Enviar solicitação</button>
+      <a href="https://wa.me/5511999999999?text=Olá! Gostaria de conversar sobre um projeto." class="chatbot-whatsapp" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-logo">Forma <em>&</em> Matéria</div>
+
+      <ul class="footer-links">
+        <li><a href="#filosofia">Filosofia</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+
+      <div class="footer-copy">© 2026 · Projeto conceitual para portfólio</div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', isOpen);
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+    });
+
+    // Close menu when link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    // Reveal animation
+    const revealEls = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealEls.forEach((el) => observer.observe(el));
+
+    // Smooth scroll with offset
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const id = link.getAttribute('href');
+        const target = document.querySelector(id);
+
+        if (target) {
+          e.preventDefault();
+          const offset = 88;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({
+            top: top,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // CHATBOT FUNCTIONALITY
+    const chatbotBtn = document.getElementById('chatbotBtn');
+    const chatbotModal = document.getElementById('chatbotModal');
+    const chatbotCloseBtn = document.getElementById('chatbotCloseBtn');
+    const chatbotOpenBtn = document.getElementById('chatbotOpenBtn');
+    const chatbotCategories = document.getElementById('chatbotCategories');
+    const chatbotForm = document.getElementById('chatbotForm');
+    const chatbotBackBtn = document.getElementById('chatbotBackBtn');
+    const chatbotSendBtn = document.getElementById('chatbotSendBtn');
+    const chatbotStatus = document.getElementById('chatbotStatus');
+    const categoryButtons = document.querySelectorAll('.chatbot-category-btn');
+
+    let selectedCategory = null;
+
+    // Open/Close chatbot
+    function openChatbot() {
+      chatbotModal.classList.add('active');
+      chatbotBtn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeChatbot() {
+      chatbotModal.classList.remove('active');
+      chatbotBtn.setAttribute('aria-expanded', 'false');
+      resetChatbot();
+    }
+
+    function resetChatbot() {
+      chatbotCategories.style.display = 'flex';
+      chatbotForm.style.display = 'none';
+      chatbotSendBtn.style.display = 'none';
+      selectedCategory = null;
+      document.getElementById('chatbot-name').value = '';
+      document.getElementById('chatbot-email').value = '';
+      document.getElementById('chatbot-message').value = '';
+      chatbotStatus.style.display = 'none';
+      chatbotSendBtn.disabled = false;
+    }
+
+    chatbotBtn.addEventListener('click', openChatbot);
+    chatbotOpenBtn.addEventListener('click', openChatbot);
+    chatbotCloseBtn.addEventListener('click', closeChatbot);
+    chatbotBackBtn.addEventListener('click', resetChatbot);
+
+    // Category selection
+    categoryButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedCategory = btn.dataset.category;
+        chatbotCategories.style.display = 'none';
+        chatbotForm.style.display = 'flex';
+        chatbotSendBtn.style.display = 'block';
+        document.getElementById('chatbot-name').focus();
+      });
+    });
+
+    // Send message
+    chatbotSendBtn.addEventListener('click', async () => {
+      const name = document.getElementById('chatbot-name').value.trim();
+      const email = document.getElementById('chatbot-email').value.trim();
+      const message = document.getElementById('chatbot-message').value.trim();
+
+      if (!name || !email || !message) {
+        chatbotStatus.textContent = '❌ Por favor, preencha todos os campos';
+        chatbotStatus.style.display = 'block';
+        return;
+      }
+
+      if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        chatbotStatus.textContent = '❌ E-mail inválido';
+        chatbotStatus.style.display = 'block';
+        return;
+      }
+
+      chatbotStatus.textContent = '⏳ Enviando...';
+      chatbotStatus.style.display = 'block';
+      chatbotSendBtn.disabled = true;
+
+      const categoryLabels = {
+        reforma: '🏗️ Reforma e Redesign',
+        interiores: '🎨 Design de Interiores',
+        consultoria: '📋 Consultoria',
+        outro: '💭 Outro Assunto'
+      };
+
+      const emailBody = `
+NOVO CONTATO VIA CHATBOT
+
+Nome: ${name}
+E-mail: ${email}
+Assunto: ${categoryLabels[selectedCategory]}
+
+Mensagem:
+${message}
+
+---
+Responda diretamente para este e-mail ou entre em contato via WhatsApp.
+      `.trim();
+
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/livioeduardomarzol@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            subject: `Novo contato: ${categoryLabels[selectedCategory]}`,
+            message: emailBody,
+            _captcha: false
+          })
+        });
+
+        if (response.ok) {
+          chatbotStatus.textContent = '✅ Mensagem enviada com sucesso! Responderemos em breve.';
+          chatbotStatus.style.background = '#E8F5E9';
+          chatbotStatus.style.color = '#2E7D32';
+          
+          setTimeout(() => {
+            closeChatbot();
+          }, 2000);
+        } else {
+          throw new Error('Erro ao enviar');
+        }
+      } catch (error) {
+        console.error('Erro:', error);
+        chatbotStatus.textContent = '❌ Erro ao enviar. Tente novamente ou use WhatsApp.';
+        chatbotStatus.style.display = 'block';
+        chatbotSendBtn.disabled = false;
+      }
+    });
+
+    // Allow Enter key to send
+    document.getElementById('chatbot-message').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && e.ctrlKey) {
+        chatbotSendBtn.click();
+      }
+    });
+  </script>
+</body>
+</html>
